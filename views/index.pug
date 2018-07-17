@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 Crawl books.toscrape.com by Hoàng Văn Thỏa
+  .row
+    .col-md-12
+        form(method='POST' action='/crawl')
+           div.form-group
+            input#page.form-control(type='text', placeholder='Enter the page number' name='page')
+           button.btn.btn-primary(type='submit') Crawl
+  hr
+  if results && results.length > 0
+    .row
+      .col-md-12 Tìm thấy !{results.length} kết quả
+    br
+    .row
+      for book in results
+        .col-xs-6.col-sm-4.col-md-3.col-lg-3
+          article.product_pod
+            .image_container
+              img(src=book.image)
+            .product_price
+              p.price_color  £!{book.price} 
+              p.instock.availability !{ book.status}
+
+
+
